@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <EncryptionForm @generate="generate"/>
     <EncryptionLink :url-link="urlLink" :url-path="urlPath" />
   </div>
@@ -20,6 +20,9 @@ export default {
     generate (content) {
       const data = {
         message: content
+      }
+      if (!data.message) {
+        return
       }
       fetch('http://localhost:3000/api/secret', {
         method: 'POST',
@@ -42,5 +45,9 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
 
 </style>
